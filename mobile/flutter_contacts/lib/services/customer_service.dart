@@ -18,15 +18,10 @@ class CustomerService extends ChangeNotifier {
 
   Future loadCustomers() async {
     final url = Uri.http(_baseUrl, 'api/customers');
-    print(url);
-
+    // print(url);
     final resp = await http.get(url);
-
-    final Map<String, dynamic> customerMap = json.decode(resp.body);
-
-    customerMap.forEach((key, value) {
-      final tempCustomer = Customer.fromMap(value);
-      this.customers.add(tempCustomer);
-    });
+    final decodedData = json.decode(resp.body);
+    print(decodedData["customers"][0]);
+    // print(customerMap);
   }
 }
