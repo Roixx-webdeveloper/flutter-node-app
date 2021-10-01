@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/services/customer_service.dart';
+import 'package:flutter_contacts/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -13,10 +14,9 @@ class HomeScreen extends StatelessWidget {
             title: Text('Customer'),
           ),
           body: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (BuildContext context, int index) => Container(
-                    child: Text('Hola'),
-                  ))),
+              itemCount: customerService.customers.length,
+              itemBuilder: (BuildContext context, int index) =>
+                  CustomerTile(customer: customerService.customers[index]))),
     );
   }
 }
