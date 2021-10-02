@@ -13,7 +13,7 @@ class Customer {
   String name;
   String phone;
   String email;
-  String rating;
+  double rating;
 
   factory Customer.fromJson(String str) => Customer.fromMap(json.decode(str));
 
@@ -24,7 +24,7 @@ class Customer {
       name: json["name"],
       phone: json["phone"],
       email: json["email"],
-      rating: json["rating"]);
+      rating: json["rating"].toDouble());
 
   Map<String, dynamic> toMap() => {
         "id": id,
@@ -35,6 +35,7 @@ class Customer {
       };
 
   Customer copy() => Customer(
+      id: this.id,
       name: this.name,
       phone: this.phone,
       email: this.email,
