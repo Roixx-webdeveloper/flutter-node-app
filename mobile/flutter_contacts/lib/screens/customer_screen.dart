@@ -29,31 +29,51 @@ class _CustomerScreenBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final customerForm = Provider.of<CustomerFormProvider>(context);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Customer : " + customerService.selectedCustomer.name),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-              child: Container(
-                  decoration: _BuildBoxDecoration(),
-                  padding: const EdgeInsets.all(20),
-                  width: double.infinity,
-                  child: _CustomerForm()),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: FittedBox(
+            fit: BoxFit.contain,
+            child: Text(
+              "Customer : " + customerService.selectedCustomer.name,
             ),
+          ),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  customerService.deleteCustomer(customerForm.customer);
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                      '/home', (Route<dynamic> route) => false);
+                },
+                icon: Icon(Icons.delete))
           ],
         ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          print("hola");
-          customerService.saveOrCreateCustomer(customerForm.customer);
-        },
-        child: Icon(Icons.save),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                child: Container(
+                    decoration: _BuildBoxDecoration(),
+                    padding: const EdgeInsets.all(20),
+                    width: double.infinity,
+                    child: _CustomerForm()),
+              ),
+            ],
+          ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+        floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              print("hola");
+              customerService.saveOrCreateCustomer(customerForm.customer);
+            },
+            child: customerService.isSaving
+                ? CircularProgressIndicator(
+                    color: Colors.white,
+                  )
+                : Icon(Icons.save_outlined)),
       ),
     );
   }

@@ -100,7 +100,7 @@ const deleteCustomer = async (req, res) => {
     }
 
     await customer.destroy();
-    res.json({ msg: 'Customer deleted' })
+    res.json({ customer })
 
 }
 

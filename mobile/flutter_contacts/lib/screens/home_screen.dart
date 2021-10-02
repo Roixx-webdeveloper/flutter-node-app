@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/models/customer.dart';
+import 'package:flutter_contacts/screens/screens.dart';
 import 'package:flutter_contacts/services/customer_service.dart';
 import 'package:flutter_contacts/widgets/widgets.dart';
 import 'package:provider/provider.dart';
@@ -8,6 +9,8 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final customerService = Provider.of<CustomerService>(context);
+
+    if (customerService.isLoading) return LoadingScreen();
 
     return SafeArea(
       child: Scaffold(

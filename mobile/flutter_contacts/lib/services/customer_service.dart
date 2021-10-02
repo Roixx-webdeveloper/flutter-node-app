@@ -93,4 +93,21 @@ class CustomerService extends ChangeNotifier {
     this.customers.add(customer);
     return customer.id!;
   }
+
+  Future<int> deleteCustomer(Customer customer) async {
+    this.isLoading = true;
+    notifyListeners();
+    final url = Uri.http(_baseUrl, 'api/customers/' + customer.id.toString());
+    final resp = await http.delete(url,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: customer.toJson());
+    this.customers.removeWhere((element) => element.id == customer.id);
+
+    this.isLoading = false;
+    notifyListeners();
+
+    return customer.id!;
+  }
 }
