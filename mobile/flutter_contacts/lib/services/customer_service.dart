@@ -10,6 +10,8 @@ class CustomerService extends ChangeNotifier {
 
   final List<Customer> customers = [];
   bool isLoading = true;
+  bool isSaving = false;
+  late Customer selectedCustomer;
 
   CustomerService() {
     this.loadCustomers();
@@ -38,5 +40,57 @@ class CustomerService extends ChangeNotifier {
     notifyListeners();
 
     return this.customers;
+  }
+
+  Future saveOrCreateCustomer(Customer customer) async {
+    isSaving = true;
+    notifyListeners();
+
+    if (customer.id == null) {
+      //saving new customer
+      await this.createCustomer(customer);
+    } else {
+      await this.updateCustomer(customer);
+    }
+
+    isSaving = false;
+    notifyListeners();
+  }
+
+  Future<int> updateCustomer(Customer customer) async {
+    final url = Uri.http(_baseUrl, 'api/customers/' + customer.id.toString());
+    print(url);
+    print(customer.toJson());
+    final resp = await http.put(url,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: customer.toJson());
+    final decodedData = resp.body;
+    print(decodedData);
+
+    //Update customer list method
+    final index =
+        this.customers.indexWhere((element) => element.id == customer.id);
+    this.customers[index] = customer;
+    return customer.id!;
+  }
+
+  Future<int> createCustomer(Customer customer) async {
+    final url = Uri.http(_baseUrl, 'api/customers');
+    print(url);
+    print(customer.toJson());
+    final resp = await http.post(url,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: customer.toJson());
+    final decodedData = json.decode(resp.body);
+    print(decodedData);
+
+    //Update customer list method
+    customer.id = decodedData["id"];
+    this.customers.add(customer);
+    return customer.id!;
   }
 }
