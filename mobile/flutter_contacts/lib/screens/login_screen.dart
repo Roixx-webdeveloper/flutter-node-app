@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/providers/login_form_provider.dart';
+import 'package:flutter_contacts/services/auth_service.dart';
+import 'package:flutter_contacts/services/services.dart';
 import 'package:flutter_contacts/ui/input_decorations.dart';
 import 'package:flutter_contacts/widgets/widgets.dart';
 import 'package:provider/provider.dart';
@@ -93,10 +95,26 @@ class _LoginForm extends StatelessWidget {
               height: 30,
             ),
             MaterialButton(
-              onPressed: () {
-                if (!loginForm.isValidForm()) return;
-                Navigator.pushReplacementNamed(context, '/home');
-              },
+              onPressed: loginForm.isLoading
+                  ? null
+                  : () async {
+                      FocusScope.of(context).unfocus();
+                      final authService =
+                          Provider.of<AuthService>(context, listen: false);
+                      if (!loginForm.isValidForm()) return;
+                      loginForm.isLoading = false;
+
+                      final String? errorMsg = await authService.login(
+                          loginForm.username, loginForm.password);
+
+                      if (errorMsg == null) {
+                        Navigator.pushReplacementNamed(context, '/home');
+                      } else {
+                        NotifyService.showSnackBar(errorMsg);
+                        print(errorMsg);
+                        loginForm.isLoading = false;
+                      }
+                    },
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
               disabledColor: Colors.grey,

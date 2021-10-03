@@ -7,6 +7,7 @@ class Server {
         this.port = process.env.PORT;
         this.app.use(express.json());
         this.customerPath = '/api/customers';
+        this.authPath = '/api/auth';
 
         //Database
         this.dbConnect();
@@ -34,6 +35,7 @@ class Server {
 
 
     routes() {
+        this.app.use(this.authPath, require('../routes/auth'));
         this.app.use(this.customerPath, require('../routes/customers'));
     }
 

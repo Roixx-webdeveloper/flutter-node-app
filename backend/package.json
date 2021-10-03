@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^10.0.0",
+    "express-validator": "^6.12.2",
+    "jsonwebtoken": "^8.5.1",
     "mariadb": "^2.5.4",
     "sequelize": "^6.6.5"
   },
