@@ -4,7 +4,7 @@ const db = require('./database');
 class Server {
     constructor() {
         this.app = express();
-        this.port = process.env.PORT;
+        this.port = process.env.NODE_DOCKER_PORT || 8080;
         this.app.use(express.json());
         this.customerPath = '/api/customers';
         this.authPath = '/api/auth';

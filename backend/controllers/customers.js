@@ -13,7 +13,7 @@ const getCustomer = async (req, res) => {
     const customer = await Customer.findByPk(id);
     if (!customer) {
         return res.status(404).json({
-            msg: 'Customer does not exist'
+            msg: 'Customer does not exists'
         });
     }
 
@@ -60,7 +60,7 @@ const putCustomer = async (req, res) => {
         const customer = await Customer.findByPk(id);
         if (!customer) {
             return res.status(404).json({
-                msg: 'Customer does not exist'
+                msg: 'Customer does not exists'
             });
         }
 
@@ -94,7 +94,7 @@ const deleteCustomer = async (req, res) => {
     const customer = await Customer.findByPk(id);
     if (!customer) {
         return res.status(404).json({
-            msg: 'Customer does not exist'
+            msg: 'Customer does not exists'
         });
     }
 
