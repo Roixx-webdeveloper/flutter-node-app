@@ -8,9 +8,8 @@ const login = async (req, res = response) => {
     const userId = process.env.USER_ID;
 
     try {
-
         //Verify data
-        if (username != process.env.USER || password != process.env.PWD) {
+        if (username != process.env.USER || password != process.env.PASS) {
             return res.status(400).json({
                 msg: 'Invalid Credentials'
             })
