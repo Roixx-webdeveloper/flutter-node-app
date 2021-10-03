@@ -9,9 +9,6 @@ class LoginFormProvider extends ChangeNotifier {
   bool isLoading = false;
 
   bool isValidForm() {
-    print(username);
-    print(password);
-
     return formKey.currentState?.validate() ?? false;
   }
 }

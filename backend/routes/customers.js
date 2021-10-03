@@ -3,14 +3,13 @@ const { Router } = require('express');
 const { getCustomers, getCustomer, postCustomer, putCustomer, deleteCustomer } = require('../controllers/customers');
 const { jwtValidation } = require('../middlewares/jwtValidation');
 
-
 const router = Router();
 
 
-router.get('/', getCustomers);
-router.get('/:id', getCustomer);
-router.post('/', postCustomer);
-router.put('/:id', putCustomer);
+router.get('/', [jwtValidation], getCustomers);
+router.get('/:id', [jwtValidation], getCustomer);
+router.post('/', [jwtValidation], postCustomer);
+router.put('/:id', [jwtValidation], putCustomer);
 router.delete('/:id', [
     jwtValidation,
 ], deleteCustomer);

@@ -64,18 +64,17 @@ const putCustomer = async (req, res) => {
             });
         }
 
-        // const emailValidator = await Customer.findOne({
-        //     where : {
-        //         email : body.email
-        //     }
-        // });
+        const emailValidator = await Customer.findOne({
+            where: {
+                email: body.email
+            }
+        });
 
-        // if ( emailValidator){
-        //     return res.status(400).json({
-        //         msg : 'Email already exists :' + body.email
-        //     });
-        // }
-        console.log(body);
+        if (emailValidator.email != customer.email) {
+            return res.status(400).json({
+                msg: 'Email already exists :' + body.email
+            });
+        }
         await customer.update(body);
         res.json(customer.id);
 

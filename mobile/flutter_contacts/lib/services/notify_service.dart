@@ -5,8 +5,11 @@ class NotifyService {
   static late GlobalKey<ScaffoldMessengerState> messengerKey =
       new GlobalKey<ScaffoldMessengerState>();
 
-  static showSnackBar(String message) {
-    final snackbar = new SnackBar(content: Text(message));
+  static showSnackBar(String message, [Color color = Colors.white]) {
+    final snackbar = new SnackBar(
+      content: Text(message),
+      backgroundColor: color,
+    );
 
     messengerKey.currentState!.showSnackBar(snackbar);
   }

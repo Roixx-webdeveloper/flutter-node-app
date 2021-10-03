@@ -115,6 +115,7 @@ class _CustomerForm extends StatelessWidget {
           ),
           TextFormField(
             initialValue: customer.phone,
+            keyboardType: TextInputType.phone,
             onChanged: (value) => {customer.phone = value},
             decoration: InputDecorations.loginInputDecoration(
                 hintText: "Enter the customer phone",
