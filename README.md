@@ -28,13 +28,9 @@ After a few seconds, you will see the following message
 
 ### Login Request
 
-Endpoint
-
 ```
 http://localhost:8000/api/auth/login
 ```
-
-Post Example
 
 #### Method: POST Content-Type: application/json
 
@@ -53,8 +49,35 @@ Valid Credentials Response Example :
 
 ---
 
+## Customers Section
+
+In order to access customers, a valid JWT must be supplied
+
+---
+
 ### Get All Customers
 
+#### Method: Get
+
+Headers:
+token-key : 'token'
+
 ```
- Database On
+http://localhost:8000/api/auth/login
 ```
+
+Valid JWT Response Example :
+
+{
+"customers": [
+{
+"id": 2,
+"name": "oscar",
+"phone": "111",
+"email": "oscardjimenezm@gmail.com",
+"rating": 5,
+"createdAt": "2021-10-03T23:52:11.000Z",
+"updatedAt": "2021-10-03T23:52:11.000Z"
+}
+]
+}
