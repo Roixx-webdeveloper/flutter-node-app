@@ -75,10 +75,12 @@ Body:
 
 Valid Credentials Response Example :
 
+```
 {
 "username": "alex",
 "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxIiwiaWF0IjoxNjMzMzExNjY5LCJleHAiOjE2MzMzNTQ4Njl9.GGJeildWWOVqJjNW_tjNeNh9jLpL0qKrdm58ue4fpd0"
 }
+```
 
 ---
 
