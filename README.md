@@ -247,4 +247,6 @@ Valid JWT Response Example :
 }
 ```
 
+## Happy Testing!!! 🤓 🎁
+
 ---
