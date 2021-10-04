@@ -24,6 +24,39 @@ After a few seconds, you will see the following message
  Database On
 ```
 
+## Running flutter App
+
+Inside mobile/flutter_contacts folder run the next command
+
+### Restore packages
+
+```
+flutter pub get
+```
+
+### Start the App
+
+```
+flutter run lib/main.dart
+```
+
+### Ports
+
+In case of problems with the Android simulator port, use for API communication:
+
+#### Inside:
+
+- services/customer_service.dart
+- services/auth_service.dart
+
+#### Modify
+
+```
+final String _baseUrl = '10.0.2.2:8000';
+```
+
+---
+
 ## Testing the API 📖
 
 ### Login Request
@@ -110,6 +143,47 @@ Valid JWT Response Example :
 "updatedAt": "2021-10-03T23:52:11.000Z"
 }
 }
+
+---
+
+### Post Customer
+
+#### Method: POST Content-Type: application/json
+
+Headers:
+token-key : 'jwt'
+
+```
+http://localhost:8000/api/customers/
+
+```
+
+Body example:
+
+```
+{
+    "name": "new name",
+    "phone": "11111111",
+    "email": "new@email.com",
+    "rating": 1
+}
+```
+
+Valid JWT Response Example :
+
+{
+"customer": {
+"id": 2,
+"name": "new name",
+"phone": "11111111",
+"email": "new@email.com",
+"rating": 1
+"createdAt": "2021-10-03T23:52:11.000Z",
+"updatedAt": "2021-10-03T23:52:11.000Z"
+}
+}
+
+---
 
 ---
 

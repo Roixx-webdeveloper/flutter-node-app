@@ -14,7 +14,7 @@ class CheckAuthScren extends StatelessWidget {
       child: FutureBuilder(
         future: authService.readToken(),
         builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-          if (!snapshot.hasData) return Text('Waiting');
+          if (!snapshot.hasData) return Center(child: Text('Waiting...'));
 
           Future.microtask(() {
             Navigator.of(context).pushReplacementNamed('/login');
