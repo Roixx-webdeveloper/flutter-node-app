@@ -21,9 +21,6 @@ class Server {
     async dbConnect() {
         try {
             await db.authenticate();
-            console.log('conect init')
-
-
             await db.sync();
             console.log('Database On')
         } catch (error) {
