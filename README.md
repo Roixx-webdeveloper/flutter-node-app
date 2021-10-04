@@ -84,3 +84,60 @@ Valid JWT Response Example :
 }
 
 ---
+
+### Get Customer
+
+#### Method: Get
+
+Headers:
+token-key : 'jwt'
+
+```
+http://localhost:8000/api/customers/:id
+
+```
+
+Valid JWT Response Example :
+
+{
+"customer": {
+"id": 2,
+"name": "oscar",
+"phone": "111",
+"email": "email@gmail.com",
+"rating": 5,
+"createdAt": "2021-10-03T23:52:11.000Z",
+"updatedAt": "2021-10-03T23:52:11.000Z"
+}
+}
+
+---
+
+### Edit Customer
+
+#### Method: PUT
+
+Headers:
+token-key : 'jwt'
+
+```
+http://localhost:8000/api/customers/:id
+
+```
+
+Body example:
+
+```
+{
+    "name": "new name",
+    "phone": "11111111",
+    "email": "new@email.com",
+    "rating": 1
+}
+```
+
+Valid JWT Response Example :
+
+`id` = '2';
+
+---
