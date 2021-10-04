@@ -74,7 +74,7 @@ Valid JWT Response Example :
 "id": 2,
 "name": "oscar",
 "phone": "111",
-"email": "oscardjimenezm@gmail.com",
+"email": "email@gmail.com",
 "rating": 5,
 "createdAt": "2021-10-03T23:52:11.000Z",
 "updatedAt": "2021-10-03T23:52:11.000Z"
