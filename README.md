@@ -60,10 +60,10 @@ In order to access customers, a valid JWT must be supplied
 #### Method: Get
 
 Headers:
-token-key : 'token'
+token-key : 'jwt'
 
-```
-http://localhost:8000/api/auth/login
+````
+http://localhost:8000/api/customers/
 ```
 
 Valid JWT Response Example :
@@ -81,3 +81,6 @@ Valid JWT Response Example :
 }
 ]
 }
+
+---
+````
