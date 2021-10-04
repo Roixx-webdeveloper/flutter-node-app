@@ -9,8 +9,14 @@ class CustomerTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(Icons.contacts_rounded),
-      title: Text(customer.name),
+      leading: Icon(
+        Icons.account_circle,
+        size: 35,
+      ),
+      title: Text(
+        customer.name,
+        style: TextStyle(fontSize: 20),
+      ),
     );
   }
 }

@@ -25,8 +25,10 @@ class HomeScreen extends StatelessWidget {
                       customerService.customers[index].copy();
                   Navigator.pushNamed(context, '/customer');
                 },
-                child:
-                    CustomerTile(customer: customerService.customers[index]))),
+                child: Column(children: [
+                  CustomerTile(customer: customerService.customers[index]),
+                  Divider()
+                ]))),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             customerService.selectedCustomer =
