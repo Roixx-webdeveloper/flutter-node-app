@@ -115,7 +115,7 @@ Valid JWT Response Example :
 
 ### Edit Customer
 
-#### Method: PUT
+#### Method: PUT Content-Type: application/json
 
 Headers:
 token-key : 'jwt'
@@ -139,5 +139,36 @@ Body example:
 Valid JWT Response Example :
 
 `id` = '2';
+
+---
+
+### Delete Customer
+
+#### Method: DELETE
+
+Headers:
+token-key : 'jwt'
+
+```
+http://localhost:8000/api/customers/:id
+
+```
+
+Valid JWT Response Example :
+
+```
+
+{
+"customer": {
+"id": 2,
+"name": "oscar",
+"phone": "111",
+"email": "email@gmail.com",
+"rating": 5,
+"createdAt": "2021-10-03T23:52:11.000Z",
+"updatedAt": "2021-10-03T23:52:11.000Z"
+}
+}
+```
 
 ---
